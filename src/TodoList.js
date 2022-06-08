@@ -1,26 +1,20 @@
 export const TodoList =({filter,checked,deleteTask,tasks}) => {
     return(
-    
     <div>
         <br></br>
     <div >
         {tasks.map(task => {
-            
                 if (filter === "All") {
                     return (
-
                 <>
                 <div className="todo">
-                    
-                        
                         <p key={task.id}></p>
                         <input type="checkbox"  checked={task.checked} onClick={() => checked(task.id)} />
 
-                        {task.checked ? <span className="cut">{task.name}</span> : <span>{task.name}</span>}
+                        {task.checked ? <span className="cut">{task.title}</span> : <span>{task.title}</span>}
                         <a href="#" onClick={() => deleteTask(task.id)}> delete</a>
                         <br></br>
-                    </div>
-                    
+                    </div>         
                 </>
                 )
                 }
@@ -28,12 +22,10 @@ export const TodoList =({filter,checked,deleteTask,tasks}) => {
                     return (
                 <>
                 <div className="todo">
-                    
-                    
                         <p key={task.id}></p>
                         <input type="checkbox" onClick={() => checked(task.id)} />
 
-                        {task.checked ? <span className="cut">{task.name}</span> : <span>{task.name}</span>}
+                        {task.checked ? <span className="cut">{task.title}</span> : <span>{task.title}</span>}
                         <a href="#" onClick={() => deleteTask(task.id)}> delete</a>
                         <br></br>
                     </div>
@@ -50,7 +42,7 @@ export const TodoList =({filter,checked,deleteTask,tasks}) => {
                         <p key={task.id}></p>
                         <input type="checkbox" onClick={() => checked(task.id)} />
 
-                        {task.checked ? <span className="cut">{task.name}</span> : <span>{task.name}</span>}
+                        {task.checked ? <span className="cut">{task.title}</span> : <span>{task.title}</span>}
                         <a href="#" onClick={() => deleteTask(task.id)}> delete</a>
                         <br></br>
                     </div>

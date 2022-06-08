@@ -4,27 +4,40 @@ import ReactDOM from 'react-dom';
 import './style.css';
 import { Todo } from './Todo';
 import { TodoList } from './TodoList';
+import axios from 'axios';
+
 
 function App() {
     const [text, setText] = useState("");
     const [tasks, setTasks] = useState([]);
     const [filter, setFilter] = useState("All");
+      const TodoListApi = () => {
 
+		axios.get('http://127.0.0.1:3000/about1').then((response) => {
+        console.log(response); 
+        const {data} = response;
+			
+			setTasks(data);
+      })
+	};
+  
 
     const taskValueChange = (val) => {
         setText(val);
     };
     useEffect(()=>{
-        let temp=localStorage.getItem("tasks");
-        console.log(temp);
-        if(temp){
-            setTasks(JSON.parse(temp));
-        }
+        // let temp=localStorage.getItem("tasks");
+        // console.log(temp);
+        // if(temp){
+        //     setTasks(JSON.parse(temp));
+        // }
+        TodoListApi();
     },[]);
     const addTask = () => {
-        setTasks([...tasks, { id: nanoid(), name: text, checked: false }]);
+        let TempArray = [...tasks, { id: nanoid(), name: text, checked: false }]
+        setTasks(TempArray);
         setText("");
-        localStorage.setItem("tasks",JSON.stringify(tasks));
+        localStorage.setItem("tasks",JSON.stringify(TempArray));
     }
     const checked = (id) => {
         tasks.map((task) => {
